@@ -15,6 +15,12 @@ const renderSurveys = props => {
         <div className="card-action white-text">
           <a>Yes: {survey.yes}</a>
           <a>No: {survey.no}</a>
+          <button
+            onClick={() => props.deleteSurvey(survey._id, props.history)}
+            className="btn-flat blue right"
+          >
+            Delete
+          </button>
         </div>
       </div>
     );

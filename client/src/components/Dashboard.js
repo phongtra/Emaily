@@ -6,7 +6,7 @@ import SurveyList from "./surveys/SurveyList";
 const Dashboard = props => {
   return (
     <div>
-      <SurveyList />
+      <SurveyList history={props.history} />
       <div className="fixed-action-btn">
         <Link to="/surveys/new" className="btn-floating btn-large red">
           <i className="material-icons">add</i>

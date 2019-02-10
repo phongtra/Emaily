@@ -70,4 +70,8 @@ module.exports = app => {
       res.status(422).send(err);
     }
   });
+  app.post("/api/surveys/:id", async (req, res) => {
+    await Survey.deleteOne({ _id: req.body.id }).exec();
+    res.end();
+  });
 };
