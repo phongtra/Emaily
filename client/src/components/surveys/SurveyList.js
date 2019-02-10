@@ -24,7 +24,9 @@ const SurveyList = props => {
   useEffect(() => {
     props.fetchSurvey();
   }, []);
-
+  if (!props.survey === 0) {
+    return <h5>Create a new survey by clicking the add button</h5>;
+  }
   return <div>{renderSurveys(props)}</div>;
 };
 
