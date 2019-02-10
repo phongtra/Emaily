@@ -1,18 +1,21 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
 import Header from "./Header";
 import Landing from "./Landing";
+import Dashboard from "./Dashboard";
+import SurveyNew from "./surveys/SurveyNew";
 
-const Survey = () => {
-  return <h1>Survey</h1>;
+const ThankYou = () => {
+  return (
+    <>
+      <h5>Thank you for voting</h5>
+      <Link to="/">Go to home page</Link>
+    </>
+  );
 };
-const Create = () => {
-  return <div>Create</div>;
-};
-
 const App = props => {
   useEffect(() => {
     props.fetchUser();
@@ -23,8 +26,13 @@ const App = props => {
         <Header />
         <div className="container" style={{ height: "100%" }}>
           <Route path="/" exact component={Landing} />
-          <Route path="/surveys" exact component={Survey} />
-          <Route path="/surveys/new" exact component={Create} />
+          <Route path="/surveys" exact component={Dashboard} />
+          <Route path="/surveys/new" exact component={SurveyNew} />
+          <Route
+            path="/api/thanks/:surveyId/:choice"
+            exact
+            component={ThankYou}
+          />
         </div>
       </div>
     </BrowserRouter>
