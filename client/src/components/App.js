@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
@@ -16,6 +16,14 @@ const ThankYou = () => {
     </>
   );
 };
+const Error = () => {
+  return (
+    <>
+      <h1>404: Page not Found</h1>
+      <Link to="/">Go to home page</Link>
+    </>
+  );
+};
 const App = props => {
   useEffect(() => {
     props.fetchUser();
@@ -25,14 +33,17 @@ const App = props => {
       <div>
         <Header />
         <div className="container" style={{ height: "100%" }}>
-          <Route path="/" exact component={Landing} />
-          <Route path="/surveys" exact component={Dashboard} />
-          <Route path="/surveys/new" exact component={SurveyNew} />
-          <Route
-            path="/api/thanks/:surveyId/:choice"
-            exact
-            component={ThankYou}
-          />
+          <Switch>
+            <Route path="/" exact component={Landing} />
+            <Route path="/surveys" exact component={Dashboard} />
+            <Route path="/surveys/new" exact component={SurveyNew} />
+            <Route
+              path="/api/thanks/:surveyId/:choice"
+              exact
+              component={ThankYou}
+            />
+            <Route exact component={Error} />
+          </Switch>
         </div>
       </div>
     </BrowserRouter>
