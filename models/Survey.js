@@ -4,6 +4,7 @@ const recipientSchema = require("./Recipient");
 
 const surveySchema = new Schema({
   title: String,
+  from: String,
   subject: String,
   body: String,
   recipients: [recipientSchema],
